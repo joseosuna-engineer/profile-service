@@ -3,9 +3,12 @@
  */
 package net.prottonne.lab.profile.controller;
 
+import net.prottonne.lab.common.util.auth.JwtUtil;
+import net.prottonne.lab.profile.constant.ConfigurationConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +27,11 @@ public class ProfileController {
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public String auth() {
-        logger.info("{}", "my profile");
+    public String getProfile(
+            @RequestHeader(value = ConfigurationConstant.AUTHORIZATION_HEADER) String header
+    ) {
+
+        JwtUtil.validateJwtToken(header);
 
         return "my profile";
     }
