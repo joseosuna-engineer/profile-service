@@ -36,7 +36,7 @@ public class ProfileController {
             @RequestBody RequestProfile requestProfile
     ) {
 
-        JwtUtil.validateJwtToken(header);
+   //     JwtUtil.validateJwtToken(header);
 
         User user = new User();
         user.setId("3CE699EB71CF453BA5A8EA73426083C0");
