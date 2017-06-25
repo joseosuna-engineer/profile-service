@@ -3,7 +3,7 @@
  */
 package net.prottonne.lab.profile.controller;
 
-import net.prottonne.lab.profile.constant.ErrorMessage;
+import net.prottonne.lab.common.util.exception.ErrorMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionHandlerController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
@@ -28,5 +28,5 @@ public class ExceptionHandlerController {
         logger.error("{}", ex);
         return ErrorMessage.CANNOT_BE_PROCESSED.getValue();
     }
-    
+
 }

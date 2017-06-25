@@ -4,7 +4,7 @@
 package net.prottonne.lab.profile.controller;
 
 import net.prottonne.lab.common.util.auth.JwtUtil;
-import net.prottonne.lab.profile.constant.ConfigurationConstant;
+import net.prottonne.lab.common.util.header.constant.HeaderConstant;
 import net.prottonne.lab.profile.entity.RequestProfile;
 import net.prottonne.lab.profile.entity.ResponseProfile;
 import net.prottonne.lab.profile.entity.User;
@@ -32,7 +32,7 @@ public class ProfileController {
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public ResponseProfile getProfile(
-            @RequestHeader(value = ConfigurationConstant.AUTHORIZATION_HEADER) String header,
+            @RequestHeader(value = HeaderConstant.AUTHORIZATION_HEADER) String header,
             @RequestBody RequestProfile requestProfile
     ) {
 
