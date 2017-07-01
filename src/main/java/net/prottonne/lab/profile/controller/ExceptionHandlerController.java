@@ -3,6 +3,7 @@
  */
 package net.prottonne.lab.profile.controller;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import net.prottonne.lab.common.util.exception.ErrorMessage;
 import net.prottonne.lab.common.util.exception.RespondMessage;
 import org.slf4j.Logger;
@@ -21,6 +22,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ExceptionHandlerController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public RespondMessage ExpiredJwtExceptionHander(ExpiredJwtException ex) {
+        logger.error("{}", ex);
+        return new RespondMessage(
+                ErrorMessage.EXPIRED_CODE.getValue()
+        );
+    }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
