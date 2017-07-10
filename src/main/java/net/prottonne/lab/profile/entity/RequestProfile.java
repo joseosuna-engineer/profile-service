@@ -9,23 +9,23 @@ package net.prottonne.lab.profile.entity;
  */
 public class RequestProfile {
 
-    private String id;
+    private String email;
 
     public RequestProfile() {
         super();
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return "RequestProfile{" + "id=" + id + '}';
+        return "RequestProfile{" + "email=" + email + '}';
     }
 
 }

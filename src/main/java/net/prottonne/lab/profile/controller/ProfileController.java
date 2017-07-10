@@ -3,16 +3,12 @@
  */
 package net.prottonne.lab.profile.controller;
 
-import net.prottonne.lab.common.util.auth.JwtUtil;
-import net.prottonne.lab.common.util.header.constant.HeaderConstant;
 import net.prottonne.lab.profile.entity.RequestProfile;
-import net.prottonne.lab.profile.entity.ResponseProfile;
 import net.prottonne.lab.profile.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,20 +27,21 @@ public class ProfileController {
             method = RequestMethod.POST,
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public ResponseProfile getProfile(
-            @RequestHeader(value = HeaderConstant.AUTHORIZATION_HEADER) String header,
+    public User getProfile(
             @RequestBody RequestProfile requestProfile
     ) {
 
-        JwtUtil.validateJwtToken(header);
+        logger.info("requestProfile {}", requestProfile);
 
         User user = new User();
-        user.setId("3CE699EB71CF453BA5A8EA73426083C0");
+        user.setId(101001L);
         user.setFirstName("John");
         user.setLastName("Doe");
-        user.setEmail("john.doe@prottonne.net");
+        user.setEmail(requestProfile.getEmail());
 
-        return new ResponseProfile(user);
+        logger.info("responseProfile {}", user);
+
+        return user;
     }
 
 }
